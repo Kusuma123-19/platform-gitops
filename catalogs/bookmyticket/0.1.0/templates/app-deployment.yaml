@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: book-my-ticket
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image }}"                                  
           ports:
             - containerPort: 8085
           env:

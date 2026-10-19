@@ -1,7 +1,5 @@
 replicaCount: 1
-image:
-  repository: kusumacr21/book-my-ticket
-  tag: latest
+image: kusumacr21/book-my-ticket:latest
 service:
   nodePort: 30081
 mysql:
