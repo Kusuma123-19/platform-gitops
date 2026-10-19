@@ -8,4 +8,3 @@ spec:
   clientSecret:
     name: catalog-git-auth
     namespace: cattle-system
-    
