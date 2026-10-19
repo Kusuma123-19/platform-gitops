@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bookmyticket
+  namespace: bookmyticket-dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./catalogs/bookmyticket/0.1.0
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
