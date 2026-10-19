@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-my-ticket-app
+  labels:
+    app: book-my-ticket
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: book-my-ticket
+  template:
+    metadata:
+      labels:
+        app: book-my-ticket
+    spec:
+      containers:
+        - name: book-my-ticket
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8085
+          env:
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: db-url }
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: db-username }
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: db-password }
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: redis-url }
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: mail-username }
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: mail-password }
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: admin-email }
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: admin-password }
+            - name: CLOUDINARY_URL
+              valueFrom:
+                secretKeyRef: { name: app-secret, key: cloudinary-url }
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

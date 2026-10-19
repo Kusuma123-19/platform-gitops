@@ -1,6 +1,0 @@
-replicaCount: 1
-image:
-  repository: kusumacr21/technova
-  tag: v1
-service:
-  nodePort: 30080
