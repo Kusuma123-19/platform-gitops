@@ -6,6 +6,11 @@ metadata:
     app: book-my-ticket
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: book-my-ticket
@@ -16,9 +21,12 @@ spec:
     spec:
       containers:
         - name: book-my-ticket
-            image: "{{ .Values.image }}" 
-            ports:
+          image: "{{ .Values.image }}"
+          ports:
             - containerPort: 8085
+          envFrom:
+            - configMapRef:
+                name: app-config
           env:
             - name: DB_URL
               valueFrom:
@@ -38,9 +46,6 @@ spec:
             - name: MAIL_PASSWORD
               valueFrom:
                 secretKeyRef: { name: app-secret, key: mail-password }
-            - name: ADMIN_EMAIL
-              valueFrom:
-                secretKeyRef: { name: app-secret, key: admin-email }
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef: { name: app-secret, key: admin-password }
@@ -49,7 +54,7 @@ spec:
                 secretKeyRef: { name: app-secret, key: cloudinary-url }
           resources:
             requests:
-              cpu: "200m"
+              cpu: "100m"
               memory: "256Mi"
             limits:
               cpu: "500m"
