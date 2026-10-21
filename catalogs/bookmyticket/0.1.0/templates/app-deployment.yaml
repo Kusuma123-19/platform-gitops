@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: book-my-ticket
-          image: "{{ .Values.image }}"                                  
-          ports:
+            image: "{{ .Values.image }}" 
+            ports:
             - containerPort: 8085
           env:
             - name: DB_URL
