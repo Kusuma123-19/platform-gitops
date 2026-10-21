@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: ./catalogs/bookmyticket/0.1.0
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: flux-system
