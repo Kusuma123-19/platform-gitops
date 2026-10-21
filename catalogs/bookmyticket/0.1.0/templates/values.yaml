@@ -1,4 +1,0 @@
-mongo:
-  image: mongo:7.0
-  storage: 2Gi
-  nodePort: 30017

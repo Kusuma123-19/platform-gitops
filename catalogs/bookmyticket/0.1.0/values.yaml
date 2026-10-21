@@ -4,3 +4,7 @@ service:
   nodePort: 30081
 mysql:
   storage: 5Gi
+mongo:
+  image: mongo:7.0
+  storage: 2Gi
+  nodePort: 30017
