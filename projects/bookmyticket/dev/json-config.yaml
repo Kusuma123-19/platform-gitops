@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-json-config
+  namespace: bookmyticket-dev
+  annotations:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+data:
+  config.json: |
+    {
+      "bookingLimitPerUser": 5,
+      "currency": "INR",
+      "maintenanceMode": false
+    }

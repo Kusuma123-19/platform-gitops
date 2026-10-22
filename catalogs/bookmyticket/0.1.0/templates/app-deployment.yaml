@@ -59,3 +59,10 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
+          volumeMounts:
+            - name: json-config
+              mountPath: /config
+      volumes:
+        - name: json-config
+          configMap:
+            name: app-json-config
