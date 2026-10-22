@@ -7,7 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: ./catalogs/bookmyticket/0.1.0
+      chart: ./catalogs/bookmyticket/0.2.0
       reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
